@@ -40,9 +40,9 @@
                     <tr>
                         <td><git:searchTermID/></td>
                         <td><a href="search.jsp?id=<git:searchTermID/>"><git:searchTermTerm/></a></td>
-                        <td>${git:searchRepositoryCountBySearchTerm(git:searchTermIDValue()) }</td>
-                        <td>${git:searchUserCountBySearchTerm(git:searchTermIDValue()) }</td>
-                        <td>${git:searchOrganizationCountBySearchTerm(git:searchTermIDValue()) }</td>
+                        <td>${git:searchRepositoryCountBySearchTerm(${git:searchTermIDValue()+""}) }</td>
+                        <td>${git:searchUserCountBySearchTerm(${git:searchTermIDValue()+""}) }</td>
+                        <td>${git:searchOrganizationCountBySearchTerm(${git:searchTermIDValue()+""}) }</td>
                         <td>
                             <sql:query var="rels" dataSource="jdbc/GitHubTagLib">
                                 select count(*) as count from github.search_user where relevant is null and sid = ?::int
