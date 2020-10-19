@@ -60,10 +60,6 @@
 					<git:userLocation />
 				</p>
 				<p>
-					<b>email:</b>
-					<git:userEmail />
-				</p>
-				<p>
 					<b>Bio:</b>
 					<git:userBio />
 				</p>
