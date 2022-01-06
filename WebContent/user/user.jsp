@@ -65,7 +65,7 @@
 				</p>
             <p><b>Blog:</b>
             <c:choose>
-            <c:when test="${fn:startsWith(git:userBlogValue(),'http')}">
+            <c:when test="${fn:startsWith(tag_user.getBlog(),'http')}">
              <a href="<git:userBlog/>"><git:userBlog/></a>
             </c:when>
             <c:otherwise>
@@ -83,7 +83,7 @@
                     <ol class="bulletedList">
                         <git:foreachMember var="x" useOrganization="true" sortCriteria="name">
                             <git:member>
-                                <c:set var="oid" value="${git:memberOrganizationIdValue()}" />
+                                <c:set var="oid" value="${tag_member.getOrganizationId()}" />
                                 <git:organization ID="${oid}">
                                     <li><a href="<util:applicationRoot/>/organization/organization.jsp?id=<git:organizationID/>"><git:organizationName /></a>
                                 </git:organization>
@@ -96,7 +96,7 @@
 			<dl>
 				<git:foreachUserRepo var="x" useRepository="true" sortCriteria="name">
 					<git:userRepo>
-						<c:set var="rid" value="${git:userRepoRepositoryIdValue()}" />
+						<c:set var="rid" value="${tag_userRepo.getRepositoryId()}" />
 						<git:repository ID="${rid}">
 							<dt>
 								<a
@@ -115,7 +115,7 @@
             <tr><th>Repository</th><th>Most Recent Commit</th><th># Commits</th></tr>
             <git:foreachCommitter var="x">
             	<git:committer>
-                    <c:set var="rid" value="${git:committerRidValue()}"/>
+                    <c:set var="rid" value="${tag_committer.getRid()}"/>
                     <git:repository ID="${rid}">
                         <tr><td><a href="<util:applicationRoot/>/repository/repository.jsp?id=<git:repositoryID/>"><git:repositoryFullName/></a></td><td><git:committerMostRecent/></td><td><git:committerCount/></td></tr>
             		</git:repository>

@@ -7,25 +7,22 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <jsp:include page="head.jsp" flush="true">
-    <jsp:param name="title" value="CD2H gitForager" />
+	<jsp:param name="title" value="CD2H gitForager" />
 </jsp:include>
 <style type="text/css" media="all">
 @import "resources/layout.css";
 </style>
 
 <body class="home page-template-default page page-id-6 CD2H">
-    <jsp:include page="header.jsp" flush="true" />
+	<jsp:include page="header.jsp" flush="true" />
 
-    <div class="container pl-0 pr-0">
-        <br /> <br />
-        <div class="container-fluid">
-Explore the relationships in a curated list of CTSA-relevant GitHub content.
-            </div>
-            <div style="width: 100%; float: left">
-                <jsp:include page="footer.jsp" flush="true" />
-            </div>
-        </div>
-    </div>
+	<div class="container pl-0 pr-0">
+		<br /> <br />
+		<div class="container-fluid">Explore the relationships in a curated list of CTSA-relevant GitHub content.</div>
+		<div style="width: 100%; float: left">
+			<jsp:include page="footer.jsp" flush="true" />
+		</div>
+	</div>
 </body>
 
 </html>

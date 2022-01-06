@@ -65,7 +65,7 @@
 				</p>
             <p><b>Blog:</b>
             <c:choose>
-            <c:when test="${fn:startsWith(git:organizationBlogValue(),'http')}">
+            <c:when test="${fn:startsWith(tag_organization.getBlog(),'http')}">
              <a href="<git:organizationBlog/>"><git:organizationBlog/></a>
             </c:when>
             <c:otherwise>
@@ -79,7 +79,7 @@
 					<ol class="bulletedList">
 						<git:foreachMember var="x" useUser="true" sortCriteria="name">
 							<git:member>
-								<c:set var="uid" value="${git:memberUserIdValue()}" />
+								<c:set var="uid" value="${tag_member.getUserId()}" />
 								<git:user ID="${uid}">
 									<li><a href="<util:applicationRoot/>/user/user.jsp?id=<git:userID/>"><git:userName /></a>
 								</git:user>
@@ -92,7 +92,7 @@
     			<dl>
 				<git:foreachOrgRepo var="x" useRepository="true" sortCriteria="name">
 					<git:orgRepo>
-						<c:set var="rid" value="${git:orgRepoRepositoryIdValue()}" />
+						<c:set var="rid" value="${tag_orgRepo.getRepositoryId()}" />
 						<git:repository ID="${rid}">
 							<dt>
 								<a

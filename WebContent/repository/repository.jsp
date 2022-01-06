@@ -48,10 +48,10 @@
             <p><b>Name:</b> <git:repositoryName/></p>
             <git:foreachUserRepo var="x">
                 <git:userRepo>
-                    <c:set var="uid" value="${git:userRepoUserIdValue()}"/>
+                    <c:set var="uid" value="${tag_userRepoUser.getId()}"/>
                     <git:user ID="${uid}">
                         <c:choose>
-                        <c:when test="${empty git:userNameValue() }">
+                        <c:when test="${empty tag_user.getName() }">
 	                        <p><b>Owner:</b> <a href="<util:applicationRoot/>/user/user.jsp?id=<git:userID/>"><git:userLogin/></a></p>
                         </c:when>
                         <c:otherwise>
@@ -63,10 +63,10 @@
             </git:foreachUserRepo>
             <git:foreachOrgRepo var="x">
                 <git:orgRepo>
-                    <c:set var="orgid" value="${git:orgRepoOrganizationIdValue()}"/>
+                    <c:set var="orgid" value="${tag_orgRepo.getOrganizationId()}"/>
                     <git:organization ID="${orgid}">
                         <c:choose>
-                        <c:when test="${empty git:organizationNameValue() }">
+                        <c:when test="${empty tag_organization.getName() }">
 	                        <p><b>Owner:</b> <a href="<util:applicationRoot/>/organization/organization.jsp?id=<git:organizationID/>"><git:organizationLogin/></a></p>
                         </c:when>
                         <c:otherwise>
@@ -77,7 +77,7 @@
                 </git:orgRepo>
             </git:foreachOrgRepo>
             <p><b>Description:</b> <git:repositoryDescription/></p>
-            <c:if test="${git:repositoryForkValue()}">
+            <c:if test="${tag_repository.getFork()}">
                 <git:foreachParent var="x">
                     <git:parent>
                         <p><b>Forked from:</b> <a href="<util:applicationRoot/>/repository/repository.jsp?id=<git:parentParentId/>"><git:parentParentFullName/></a></p>
@@ -89,7 +89,7 @@
             <p><b>Pushed:</b> <git:repositoryPushedAt/></p>
             <p><b>Homepage:</b>
             <c:choose>
-            <c:when test="${fn:startsWith(git:repositoryHomepageValue(),'http')}">
+            <c:when test="${fn:startsWith(tag_repository.getHomepage(),'http')}">
              <a href="<git:repositoryHomepage/>"><git:repositoryHomepage/></a>
             </c:when>
             <c:otherwise>
@@ -105,10 +105,10 @@
             <tr><th>User</th><th>Most Recent Commit</th><th># Commits</th></tr>
             <git:foreachCommitter var="x">
             	<git:committer>
-                    <c:set var="uid" value="${git:committerUidValue()}"/>
+                    <c:set var="uid" value="${tag_committer.getUid()}"/>
                     <git:user ID="${uid}">
                         <c:choose>
-                        <c:when test="${empty git:userNameValue() }">
+                        <c:when test="${empty tag_user.getName() }">
                         	<tr><td><a href="<util:applicationRoot/>/user/user.jsp?id=<git:userID/>"><git:userLogin/></a></td><td><git:committerMostRecent/></td><td><git:committerCount/></td></tr>
                         </c:when>
                         <c:otherwise>

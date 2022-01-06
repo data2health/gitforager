@@ -40,39 +40,39 @@
                     <tr>
                         <td><git:searchTermID/></td>
                         <td><a href="search.jsp?id=<git:searchTermID/>"><git:searchTermTerm/></a></td>
-                        <td>${git:searchRepositoryCountBySearchTerm(${git:searchTermIDValue()+""}) }</td>
-                        <td>${git:searchUserCountBySearchTerm(${git:searchTermIDValue()+""}) }</td>
-                        <td>${git:searchOrganizationCountBySearchTerm(${git:searchTermIDValue()+""}) }</td>
+                        <td>${git:searchRepositoryCountBySearchTerm(tag_searchTerm.getID()+"") }</td>
+                        <td>${git:searchUserCountBySearchTerm(tag_searchTerm.getID()+"") }</td>
+                        <td>${git:searchOrganizationCountBySearchTerm(tag_searchTerm.getID()+"") }</td>
                         <td>
                             <sql:query var="rels" dataSource="jdbc/GitHubTagLib">
                                 select count(*) as count from github.search_user where relevant is null and sid = ?::int
-                                <sql:param>${git:searchTermIDValue()}</sql:param>
+                                <sql:param>${tag_searchTerm.getID()}</sql:param>
                             </sql:query>
                             <c:forEach items="${rels.rows}" var="row">
                                 <c:if test="${row.count > 0}">
-                                    <a href="<util:applicationRoot/>/user/user.jsp?sid=${git:searchTermIDValue()}">${row.count}</a>
+                                    <a href="<util:applicationRoot/>/user/user.jsp?sid=${tag_searchTerm.getID()}">${row.count}</a>
                                 </c:if>
                             </c:forEach>
                         </td>
                         <td>
                             <sql:query var="rels" dataSource="jdbc/GitHubTagLib">
                                 select count(*) as count from github.search_organization where relevant is null and sid = ?::int
-                                <sql:param>${git:searchTermIDValue()}</sql:param>
+                                <sql:param>${tag_searchTerm.getID()}</sql:param>
                             </sql:query>
                             <c:forEach items="${rels.rows}" var="row">
                                 <c:if test="${row.count > 0}">
-                                    <a href="<util:applicationRoot/>/organization/organization.jsp?sid=${git:searchTermIDValue()}">${row.count}</a>
+                                    <a href="<util:applicationRoot/>/organization/organization.jsp?sid=${tag_searchTerm.getID()}">${row.count}</a>
                                 </c:if>
                             </c:forEach>
                         </td>
                         <td>
                             <sql:query var="rels" dataSource="jdbc/GitHubTagLib">
                                 select count(*) as count from github.search_repository where relevant is null and sid = ?::int
-                                <sql:param>${git:searchTermIDValue()}</sql:param>
+                                <sql:param>${tag_searchTerm.getID()}</sql:param>
                             </sql:query>
                             <c:forEach items="${rels.rows}" var="row">
                                 <c:if test="${row.count > 0}">
-                                    <a href="<util:applicationRoot/>/repository/repository.jsp?sid=${git:searchTermIDValue()}">${row.count}</a>
+                                    <a href="<util:applicationRoot/>/repository/repository.jsp?sid=${tag_searchTerm.getID()}">${row.count}</a>
                                 </c:if>
                             </c:forEach>
                         </td>

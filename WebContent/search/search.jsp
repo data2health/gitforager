@@ -38,9 +38,8 @@
             <ol class="bulletedList">
             <git:foreachSearchRepository var="x" useRepository="true" >
                 <git:searchRepository>
-                    <c:if test="${git:searchRepositoryRelevantValue() || param.showAll}">
-                        <c:set var="rid" value="${git:searchRepositoryRidValue()}"/>
-                        <git:repository ID="${rid}">
+                    <c:if test="${tag_searchRepository.getRelevant() || param.showAll}">
+                        <git:repository ID="${tag_searchRepository.getRid()}">
                             <li><a href="<util:applicationRoot/>/repository/repository.jsp?id=<git:repositoryID/>"><git:repositoryFullName/></a>
                         </git:repository>
                     </c:if>
@@ -52,11 +51,10 @@
             <ol class="bulletedList">
             <git:foreachSearchUser var="x" useUser="true">
                 <git:searchUser>
-                    <c:if test="${git:searchUserRelevantValue() || param.showAll}">
-                     <c:set var="uid" value="${git:searchUserUidValue()}"/>
-                        <git:user ID="${uid}">
+                    <c:if test="${tag_searchUser.getRelevant() || param.showAll}">
+                        <git:user ID="${tag_searchUser.getUid()}">
                             <c:choose>
-                            <c:when test="${empty git:userNameValue() }">
+                            <c:when test="${empty tag_user.getName() }">
                                 <li><a href="<util:applicationRoot/>/user/user.jsp?id=<git:userID/>"><git:userLogin/></a>
                             </c:when>
                             <c:otherwise>
@@ -73,11 +71,10 @@
             <ol class="bulletedList">
             <git:foreachSearchOrganization var="x" useOrganization="true">
                 <git:searchOrganization>
-                    <c:if test="${git:searchOrganizationRelevantValue() || param.showAll}">
-                        <c:set var="orgid" value="${git:searchOrganizationOrgidValue()}"/>
-                        <git:organization ID="${orgid}">
+                    <c:if test="${tag_searchOrganization.getRelevant() || param.showAll}">
+                        <git:organization ID="${tag_searchOrganization.getOrgid()}">
                             <c:choose>
-                            <c:when test="${empty git:organizationNameValue() }">
+                            <c:when test="${empty tag_organization.getName() }">
                                 <li><a href="<util:applicationRoot/>/organization/organization.jsp?id=<git:organizationID/>"><git:organizationLogin/></a>
                             </c:when>
                             <c:otherwise>
